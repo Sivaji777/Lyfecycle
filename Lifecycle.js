@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Lifecycle1 from "./Lifecycle1";
 export default class Lifecycle extends Component {
+  
+   /* mounting face */   
   constructor(props) {
     super(props);
     this.state = {
@@ -9,21 +11,37 @@ export default class Lifecycle extends Component {
     };
     console.log("--------- constructor ----------");
   }
+  
+   static getDerivedStateFromProps(props, state){
+    console.log(' 2 getDerivedStateFromProps');
+    return null
+   }
 
   componentDidMount() {
-    console.log("--------- component did mount --------");
-  }
-  componentWillMount() {
-    console.log("Component will mount!");
+    console.log("--------- 3 component did mount --------");
   }
 
-  componentDidUpdate() {
-    console.log("-------- compionet did update --------");
-  }
-  componentWillUpdate(nextProps, nextState) {
-    console.log("----------- Component will UPDATE! ----------");
-  }
+  /* updating face */
+ static getDerivedStateFromProps(props, state){
+    console.log(' 1 getDerivedStateFromProps');
+    return null
+}
+shouldComponentUpdate(){
+    console.log(' 2 shouldComponentUpdate');
+    return true
+}
 
+getSnapshotBeforeUpdate(prevProps, prevState){
+   console.log(' 4 getSnapshotBeforeUpdate');
+    return null
+}
+
+componentDidUpdate(){
+    console.log('A 5 componentDidUpdate');
+}
+
+   /* unmounting face */ 
+  
   componentWillUnmount() {
     console.log("----------- component will unmount --------");
   }
@@ -36,6 +54,7 @@ export default class Lifecycle extends Component {
   };
 
   render() {
+    console.log('------ 3,3 -------')
     return (
       <div>
         dfdfbdbf
